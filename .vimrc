@@ -1,5 +1,5 @@
-" Arquivo de configuração do vim. Configurações custumizadas a partir da linha
-" 69. 
+" Arquivo de configuração do vim.
+" Configurações custumizadas a partir da linha 69. 
 
 " don't try to be vi compatible
 set nocompatible
@@ -39,7 +39,8 @@ set expandtab
 set noshiftround
 
 " Cursor motion
-set scrolloff=3
+set scrolloff=5
+set sidescrolloff=5
 set backspace=indent,eol,start
 runtime! macros/matchit.vim
 
@@ -70,8 +71,32 @@ map <leader>f gqip
 " Modificacoes By Diogo
 highlight ColorColumn ctermbg=245
 set colorcolumn=80
+highlight ColorColumn ctermbg=235 guibg=#2c2c2c
 
+" REMAPS
 " Sai do modo de inserção caso aperte "jj"
 set timeoutlen=400
 inoremap jj <ESC>
+" Configura a complecao inteligente como "Control + Espaco"
+inoremap <C-Space> <C-x><C-o>
+
+" Remaps para a Árvore de arquivos
+" Abre a arvore
+nnoremap <leader>e :Vexplore<CR>
+let g:netrw_winsize=25
+" Abre a árvore: (1): Esquerda; (0): Direita
+let g:netrw_altv=1
+let g:netrw_browse_split=4
+nnoremap <leader>q :b#<bar>bd#<CR>
+" Alterna para a janela esquerda
+nnoremap <leader>h <C-w>h
+" Alterna para a janela direita
+nnoremap <leader>l <C-w>l
+
+" Configura a complecao no terminal utilizando <C-n>
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
+
+" Ajusta o cursor do Vim
+set guicursor=
 
