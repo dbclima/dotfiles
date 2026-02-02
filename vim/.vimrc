@@ -4,6 +4,7 @@
 " Utilizando vim-plug. Para baixar use um dos dois abaixo:
 "
 " LINUX: curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"
 " https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "
 " WINDOWS: iwr -useb `
@@ -163,6 +164,11 @@ nnoremap K  :LspHover<CR>
 nnoremap <F2> :LspRename<CR>
 set t_Co=256
 
+" Neutraliza o Ctrl+N no modo normal para evitar congelamento da interface em
+" arquivos grandes
+inoremap <C-n> <nop>
+inoremap <C-p> <nop>
+set complete=.
 
 " Configura a complecao no terminal utilizando <C-n>
 set completeopt=menuone,noinsert,noselect
