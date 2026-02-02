@@ -1,0 +1,7 @@
+CompileFlags:
+  Add:
+    - "--target=x86_64-w64-mingw32"
+    - "--gcc-toolchain=C:/mingw64"
+    - "-IC:/mingw64/x86_64-w64-mingw32/include"
+    - "-IC:/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include"
+    - "-std=c11"
