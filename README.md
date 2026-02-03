@@ -1,6 +1,7 @@
 # Dotfiles
 Nesta pasta, salvo meus arquivos de configuracao:
 
+
 ## Vim
 ### Linux
 Abra o terminal e execute os seguintes comandos
@@ -38,6 +39,22 @@ New-Item -Path "~\vimfiles\snippets" -ItemType SymbolicLink -Value ".\vim\snippe
 iwr -useb `
 https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim `
 | ni $HOME/vimfiles/autoload/plug.vim -Force
+~~~
+
+
+### WSL
+Para que funcione totalmente no WSL2, tem que baixar as seguintes bibliotecas
+
+#### choco
+instalador de pacotes do windows
+~~~powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+~~~
+
+#### win32yank
+Ponte entre clipboard do windows e o WSL2
+~~~powershell
+choco install win32yank
 ~~~
 
 ### Configuração comum

@@ -1,5 +1,11 @@
 " Arquivo de configuração do vim.
 
+" Descomentar se estiver no windows
+" set fileformat=dos
+
+" Descomentar se estiver no Linux
+set fileformat=unix
+
 " PLUGGINS
 " Utilizando vim-plug. Para baixar use um dos dois abaixo:
 "
@@ -29,7 +35,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'prabirshrestha/vim-lsp' 
 Plug 'mattn/vim-lsp-settings'
 
-" Plugin de tema "gruvbox"
+" Plugin de tema gruvbox
 Plug 'morhetz/gruvbox'
 
 call plug#end()
@@ -39,6 +45,9 @@ set nocompatible
 
 " Turn on syntax highlighting
 syntax on
+
+" Configura o darkmode
+set background=dark
 
 " For plugins to load correctly
 filetype plugin indent on
@@ -129,6 +138,7 @@ inoremap <C-Space> <C-x><C-o>
 nnoremap <leader>e :Vexplore<CR>
 let g:netrw_winsize=25
 " Abre a árvore: (0): Esquerda; (1): Direita
+set splitright
 let g:netrw_altv=1
 let g:netrw_browse_split=4
 nnoremap <leader>q :b#<bar>bd#<CR>

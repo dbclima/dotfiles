@@ -1,0 +1,224 @@
+" ============================================================
+"  DETECÇÃO DE SISTEMA
+" ============================================================
+
+let g:is_windows = has('win32') || has('win64')
+let g:is_wsl = has('unix') && filereadable('/proc/version') &&
+      \ match(system('cat /proc/version'), 'Microsoft') >= 0
+let g:is_linux = has('unix') && !g:is_wsl
+
+" fileformat automático
+if g:is_windows
+    set fileformat=dos
+else
+    set fileformat=unix
+endif
+
+" ============================================================
+"  PLUGINS (vim-plug)
+" ============================================================
+
+if g:is_windows
+    let s:plug_dir = '~/vimfiles/plugged'
+    let s:plug_snip = '~/vimfiles/snippets'
+else
+    let s:plug_dir = '~/.vim/plugged'
+    let s:plug_snip = '~/.vim/snippets'
+endif
+
+call plug#begin(s:plug_dir)
+
+Plug 'jiangmiao/auto-pairs'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'morhetz/gruvbox'
+
+call plug#end()
+
+" ============================================================
+"  BÁSICO
+" ============================================================
+
+set nocompatible
+syntax on
+filetype plugin indent on
+set background=dark
+let mapleader = " "
+set modelines=0
+
+set number
+set relativenumber
+set ruler
+
+" Bells OFF (terminal + vim)
+set noerrorbells
+set novisualbell
+set t_vb=
+
+set encoding=utf-8
+
+" ============================================================
+"  WHITESPACE / INDENTAÇÃO
+" ============================================================
+
+set textwidth=79
+set tabstop=8
+set shiftwidth=8
+set softtabstop=0
+set expandtab
+set noshiftround
+
+" ============================================================
+"  MOVIMENTO / RENDER
+" ============================================================
+
+set scrolloff=5
+set sidescrolloff=5
+set backspace=indent,eol,start
+runtime! macros/matchit.vim
+set hidden
+set ttyfast
+set laststatus=2
+set showmode
+set showcmd
+
+" ============================================================
+"  SEARCH
+" ============================================================
+
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set showmatch
+nnoremap <leader><space> :let @/=''<CR>
+
+" ============================================================
+"  FORMATAÇÃO
+" ============================================================
+
+nnoremap <leader>f gqip
+
+" ============================================================
+"  COSMÉTICOS
+" ============================================================
+
+set colorcolumn=80
+highlight ColorColumn ctermbg=235 guibg=#2c2c2c
+set termguicolors
+colorscheme gruvbox
+
+" ============================================================
+"  COMMAND MODE (TAB)
+" ============================================================
+
+set wildmenu
+set wildmode=longest:full,full
+
+" ============================================================
+"  INSERT MODE
+" ============================================================
+
+set timeoutlen=400
+inoremap jj <ESC>
+inoremap <C-Space> <C-x><C-o>
+
+" Neutraliza completion perigosa
+inoremap <C-n> <nop>
+inoremap <C-p> <nop>
+set complete=.
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
+
+" ============================================================
+"  NETRW (árvore de arquivos)
+" ============================================================
+
+nnoremap <leader>e :Vexplore<CR>
+let g:netrw_winsize=25
+set splitright
+let g:netrw_altv=0
+let g:netrw_browse_split=4
+let g:netrw_banner=0
+nnoremap <leader>q :b#<bar>bd#<CR>
+
+" Navegação entre janelas
+nnoremap <leader>h <C-w>h
+nnoremap <leader>j <C-w>j
+nnoremap <leader>k <C-w>k
+nnoremap <leader>l <C-w>l
+
+" ============================================================
+"  CLIPBOARD (PORTÁVEL)
+" ============================================================
+
+if has('clipboard')
+    vnoremap <C-c> "+y
+    nnoremap <C-v> "+p
+elseif g:is_wsl
+    vnoremap <C-c> :w !clip.exe<CR><CR>
+    nnoremap <C-v> :r !powershell.exe -command Get-Clipboard<CR>
+endif
+
+" ============================================================
+"  MOVER LINHAS (SEM ALT – PORTÁVEL)
+" ============================================================
+
+nnoremap <leader>J :m .+1<CR>==
+nnoremap <leader>K :m .-2<CR>==
+
+" ============================================================
+"  LSP
+" ============================================================
+
+nnoremap gd :LspDefinition<CR>
+nnoremap gr :LspReferences<CR>
+nnoremap gi :LspImplementation<CR>
+nnoremap K  :LspHover<CR>
+nnoremap <F2> :LspRename<CR>
+
+let g:lsp_diagnostics_enabled=1
+let g:lsp_diagnostics_signs_enabled=1
+let g:lsp_diagnostics_virtual_text_enabled=0
+let g:lsp_diagnostics_echo_cursor=1
+
+" ============================================================
+"  PATH RECURSIVO
+" ============================================================
+
+set path+=**
+
+" ============================================================
+"  FILETYPE
+" ============================================================
+
+augroup FileTypeIndent
+    autocmd!
+    autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
+    autocmd FileType c,cpp setlocal tabstop=8 shiftwidth=8
+augroup END
+
+augroup lsp_omnifunc
+    autocmd!
+    autocmd FileType c,cpp,python setlocal omnifunc=lsp#complete
+augroup END
+
+" ============================================================
+"  SNIPPETS (PORTÁVEL)
+" ============================================================
+
+if g:is_windows
+    nnoremap !clangd :-1read ~\vimfiles\snippets\dft_clangd.txt<CR>
+    nnoremap !cmain  :-1read ~\vimfiles\snippets\cmain.txt<CR>ci<
+    nnoremap !pymain :-1read ~\vimfiles\snippets\pymain.txt<CR>jA
+else
+    nnoremap !clangd :-1read ~/.vim/snippets/dft_clangd.txt<CR>
+    nnoremap !cmain  :-1read ~/.vim/snippets/cmain.txt<CR>ci<
+    nnoremap !pymain :-1read ~/.vim/snippets/pymain.txt<CR>jA
+endif
+
+" ============================================================
+"  CURSOR
+" ============================================================
+
+set guicursor=
