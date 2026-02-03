@@ -11,3 +11,16 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.shiftwidth = 4
   end,
 })
+
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function()
+    local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 })
+    if #diagnostics > 0 then
+      local d = diagnostics[1]
+      local msg = d.message:gsub("\n", " ")
+      vim.api.nvim_echo({ { msg, "WarningMsg" } }, false, {})
+    end
+  end,
+})
+
+vim.opt.updatetime = 300

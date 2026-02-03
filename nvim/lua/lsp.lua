@@ -1,9 +1,5 @@
 local lspconfig = require("lspconfig")
 
--- Configura LSPs utilizadas
-lspconfig.clangd.setup({})
-lspconfig.pyright.setup({})
-
 local opts = { noremap = true, silent = true }
 
 -- Remaps ligados ao LSP

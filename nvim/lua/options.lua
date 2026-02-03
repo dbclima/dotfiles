@@ -33,4 +33,8 @@ vim.opt.tabstop = 8         -- Tabs com 8 espacos
 vim.opt.shiftwidth = 8      -- 
 vim.opt.expandtab = true    -- 
 
--- 
+-- Configura margem de 5 linhas ate o fim da tela
+vim.opt.scrolloff = 5
+
+-- Marca a coluna 80 para formatacao de codigo
+vim.opt.colorcolumn = "80"
