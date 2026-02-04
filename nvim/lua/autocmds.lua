@@ -24,3 +24,10 @@ vim.api.nvim_create_autocmd("CursorHold", {
 })
 
 vim.opt.updatetime = 300
+
+-- Ativa completion do LSP via omnifunc
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+  end,
+})

@@ -38,3 +38,6 @@ vim.opt.scrolloff = 5
 
 -- Marca a coluna 80 para formatacao de codigo
 vim.opt.colorcolumn = "80"
+
+-- Faz a busca por arquivos de forma recursiva
+vim.opt.path:append("**")

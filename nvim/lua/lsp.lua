@@ -2,6 +2,8 @@ local lspconfig = require("lspconfig")
 
 local opts = { noremap = true, silent = true }
 
+vim.o.completeopt = "menu,menuone,noselect"
+
 -- Remaps ligados ao LSP
 -- Vai pra definição
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
@@ -13,3 +15,17 @@ vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 -- Renomeia a variavel de forma global
 vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
+
+
+vim.lsp.config("pylsp", {
+        settings = {
+                pylsp = {
+                        plugins = {
+                                pycodestyle = {
+                                        -- Ignora linhas extensas
+                                        ignore = { "E501" } 
+                                }
+                        }
+                }
+        }
+})

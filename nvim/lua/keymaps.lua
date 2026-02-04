@@ -30,3 +30,9 @@ vim.keymap.set("i", "jj", "<ESC>", { desc= "Return to Normal mode" } )
 vim.keymap.set("n", "<M-j>", ":m .+1<CR>==", { desc= "Move line down" } )
 vim.keymap.set("n", "<M-k>", ":m .-2<CR>==", { desc= "Move line up" } )
 
+vim.keymap.set(
+        "i",
+        "<C-Space>",
+        "<C-x><C-o>",
+        { noremap=true, silent=true, desc="AutoComplete" }
+)
