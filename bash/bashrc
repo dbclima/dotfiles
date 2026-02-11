@@ -1,0 +1,18 @@
+# Arquivo carregado pelo ~/.bashrc do sistema com a seguinte estrutura
+# if [ -f "$HOME/.config/bash/bashrc" ]; then
+#         . "$HOME/.config/bash/bashrc"
+# fi
+
+BASE="$HOME/.config/bash/"
+
+for file in "$BASE/aliases.sh"\
+            "$BASE/functions.sh"\
+            "$BASE/prompt.sh"\
+            "$BASE/.sh"; do
+        [ -r "$file" ] && . "$file"
+done
+
+if [ -f "$BASE/local.sh" ]; then
+        . "$BASE/local.sh"
+fi
+
