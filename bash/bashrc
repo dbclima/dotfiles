@@ -10,7 +10,6 @@ for file in "$BASE/aliases.sh"\
             "$BASE/prompt.sh"\
             "$BASE/.sh"; do
 
-        echo "$file"
         [ -r "$file" ] && . "$file"
 done
 
