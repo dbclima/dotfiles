@@ -41,3 +41,6 @@ vim.opt.colorcolumn = "80"
 
 -- Faz a busca por arquivos de forma recursiva
 vim.opt.path:append("**")
+
+-- O buffer dos comandos y e p passa a ser o clipboard
+vim.opt.clipboard = "unnamedplus"
