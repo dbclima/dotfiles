@@ -44,3 +44,9 @@ vim.opt.path:append("**")
 
 -- O buffer dos comandos y e p passa a ser o clipboard
 vim.opt.clipboard = "unnamedplus"
+
+-- Configurando o newtr
+vim.g.netrw_hide = 0
+vim.g.netrw_liststyle = 3
+vim.g.netrw_sort_by = "exten"
+vim.g.netrw_banner = 0

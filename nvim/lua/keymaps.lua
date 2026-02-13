@@ -10,12 +10,7 @@ vim.keymap.set(
 )
 
 -- Abre a arvore de arquivos padrao netrw
-vim.keymap.set(
-        "n",
-        "<leader>e",
-        ":Neotree toggle<CR>",
-        { desc= "Opens File Tree" }
-)
+vim.keymap.set("n", "<leader>e", ":Ex<CR>", { desc= "Opens File Tree" })
 
 -- Seleciona a janela em destaque
 vim.keymap.set("n", "<leader>h", "<C-w>h", { desc= "Go to Left Window" } )

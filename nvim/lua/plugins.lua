@@ -1,4 +1,5 @@
 require("lazy").setup({
+
   -- Auto pairs
   {
     "jiangmiao/auto-pairs",
@@ -13,68 +14,38 @@ require("lazy").setup({
     end,
   },
 
-  -- LSP
-  -- Mason: instala binários de LSP, formatter, linter, etc. 
+  -- Mason: instala binários de LSP, formatter, linter, etc.
   {
     "williamboman/mason.nvim",
-    config = function() require("mason").setup() end,
+    config = function()
+      require("mason").setup()
+    end,
   },
 
-  -- Integra Mason com lspconfig 
+  -- LSP + integração automática
   {
     "williamboman/mason-lspconfig.nvim",
-    dependencies = { "williamboman/mason.nvim" },
-    config = function()
-      require("mason-lspconfig").setup({
-        -- LSPs que você quer garantir que estejam instalados 
-        ensure_installed =
-        {
-          "clangd",
+        dependencies = {
+          "williamboman/mason.nvim",
+          "neovim/nvim-lspconfig",
         },
-        -- (importante) permite setup automático 
-        automatic_installation = true,
-      })
+        config = function()
+          require("mason-lspconfig").setup({
+            ensure_installed = {
+              "clangd",
+              "pylsp",
+            },
+            automatic_installation = true,
+            -- Os handlers agora ficam aqui dentro:
+            handlers = {
+              function(server_name)
+                require("lspconfig")[server_name].setup({})
+              end,
+              -- Você pode adicionar overrides específicos aqui, se quiser:
+              -- ["lua_ls"] = function() ... end,
+            },
+          })
     end,
-  },
-
-  -- Configuração do cliente LSP do Neovim 
-  { "neovim/nvim-lspconfig", dependencies =
-    {
-      "williamboman/mason-lspconfig.nvim",
     },
-
-    config = function()
-      -- Setup explícito (simples por enquanto) 
-      vim.lsp.config("pylsp", {})
-      vim.lsp.config("clangd", {})
-
-      -- Ativa os servidores
-      vim.lsp.enable({ "pylsp", "clangd" })
-    end,
-  },
-
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
-    cmd = "Neotree",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      "nvim-tree/nvim-web-devicons",
-    },
-    config = function()
-      require("neo-tree").setup({
-        -- configuração entra aqui
-        close_if_last_window = true,
-        filesystem = {
-          follow_current_file = { enabled = true }
-        },
-        window = {
-          position = "right",
-          width = 30,
-        }
-      })
-    end,
-  }
 
 })
