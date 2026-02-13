@@ -13,3 +13,16 @@ nvim() {
                 command nvim "$@"
         fi
 }
+
+# Configura a inicialização sem parametros do nvim
+nvim() {
+        if [ $# -eq 0 ]; then
+                if [ -f "TODO.md" ]; then
+                        command nvim TODO.md
+                else
+                        command nvim .
+                fi
+        else
+                command nvim "$@"
+        fi
+}
