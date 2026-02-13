@@ -8,8 +8,8 @@ mkcd() {
 # Caso haja um arquivo TODO.md, o neovim já abre nele.
 nvim() {
         if [ $# -eq 0 ] && [ -f "TODO.md" ]; then
-                nvim TODO.md
+                command nvim TODO.md
         else
-                nvim "$@"
+                command nvim "$@"
         fi
 }
