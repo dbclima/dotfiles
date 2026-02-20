@@ -6,13 +6,7 @@ require("lazy").setup({
   },
 
   -- Tema
-  {
-    "morhetz/gruvbox",
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme("gruvbox")
-    end,
-  },
+  require("theme"),
 
   -- Mason: instala binários de LSP, formatter, linter, etc.
   {

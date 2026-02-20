@@ -1,0 +1,1 @@
+/home/dbclima/Documents/Neovim-theme-switcher/theme.lua
