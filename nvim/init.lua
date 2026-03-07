@@ -182,6 +182,11 @@ vim.keymap.set('i', 'jj', '<ESC>', { desc = 'Exit Insert Mode' })
 vim.keymap.set('n', '<leader>e', ':Ex<CR>', { desc = 'Opens File Tree' })
 vim.keymap.set('n', '<M-j>', ':m .+1<CR>==', { desc = 'Move line down' })
 vim.keymap.set('n', '<M-k>', ':m .-2<CR>==', { desc = 'Move line up' })
+vim.keymap.set('v', '(', 'c(<ESC>pa)')
+vim.keymap.set('v', '[', 'c[<ESC>pa]')
+vim.keymap.set('v', '{', 'c{<ESC>pa}')
+vim.keymap.set('v', '"', 'c"<ESC>pa"')
+vim.keymap.set('v', "'", "c'<ESC>pa'")
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
