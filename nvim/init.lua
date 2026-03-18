@@ -289,7 +289,23 @@ require('lazy').setup({
 
   {
     'mfussenegger/nvim-jdtls',
-    ft = 'java', -- Só carrega quando abrir arquivo Java
+    ft = 'java',
+    config = function()
+      local jdtls = require 'jdtls'
+
+      local config = {
+        cmd = {
+          'jdtls',
+          '-Xms2g',
+          '-Xmx8g',
+        },
+      }
+
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = 'java',
+        callback = function() jdtls.start_or_attach(config) end,
+      })
+    end,
   },
 
   -- NOTE: Plugins can be added via a link or github org/name. To run setup automatically, use `opts = {}`
@@ -652,7 +668,7 @@ require('lazy').setup({
         clangd = {},
         pyright = {},
         stylua = {}, -- Used to format Lua code
-        jdtls = {},
+        bashls = {},
 
         -- Special Lua Config, as recommended by neovim help docs
         lua_ls = {

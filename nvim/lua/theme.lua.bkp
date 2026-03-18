@@ -1,0 +1,56 @@
+return {
+    {
+        "bjarneo/aether.nvim",
+        branch = "v2",
+        name = "aether",
+        priority = 1000,
+        opts = {
+            transparent = false,
+            colors = {
+                -- Background colors
+                bg = "#1b1917",
+                bg_dark = "#1b1917",
+                bg_highlight = "#908c87",
+
+                -- Foreground colors
+                -- fg: Object properties, builtin types, builtin variables, member access, default text
+                fg = "#ebe1d4",
+                -- fg_dark: Inactive elements, statusline, secondary text
+                fg_dark = "#cbb498",
+                -- comment: Line highlight, gutter elements, disabled states
+                comment = "#908c87",
+
+                -- Accent colors
+                -- red: Errors, diagnostics, tags, deletions, breakpoints
+                red = "#cb735d",
+                -- orange: Constants, numbers, current line number, git modifications
+                orange = "#e4ad9f",
+                -- yellow: Types, classes, constructors, warnings, numbers, booleans
+                yellow = "#c3ac84",
+                -- green: Comments, strings, success states, git additions
+                green = "#98a196",
+                -- cyan: Parameters, regex, preprocessor, hints, properties
+                cyan = "#4da1cd",
+                -- blue: Functions, keywords, directories, links, info diagnostics
+                blue = "#989abe",
+                -- purple: Storage keywords, special keywords, identifiers, namespaces
+                purple = "#c79ea7",
+                -- magenta: Function declarations, exception handling, tags
+                magenta = "#e9d7db",
+            },
+        },
+        config = function(_, opts)
+            require("aether").setup(opts)
+            vim.cmd.colorscheme("aether")
+
+            -- Enable hot reload
+            require("aether.hotreload").setup()
+        end,
+    },
+    {
+        "LazyVim/LazyVim",
+        opts = {
+            colorscheme = "aether",
+        },
+    },
+}
