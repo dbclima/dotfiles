@@ -158,7 +158,7 @@ vim.o.splitbelow = true
 --   See `:help lua-options`
 --   and `:help lua-guide-options`
 vim.o.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
@@ -179,6 +179,9 @@ vim.o.confirm = true
 
 -- CUSTOM KEYMAPS
 vim.keymap.set('i', 'jj', '<ESC>', { desc = 'Exit Insert Mode' })
+vim.keymap.set('i', 'jJ', '<ESC>', { desc = 'Exit Insert Mode' })
+vim.keymap.set('i', 'JJ', '<ESC>', { desc = 'Exit Insert Mode' })
+vim.keymap.set('i', 'Jj', '<ESC>', { desc = 'Exit Insert Mode' })
 vim.keymap.set('n', '<leader>e', ':Ex<CR>', { desc = 'Opens File Tree' })
 vim.keymap.set('n', '<M-j>', ':m .+1<CR>==', { desc = 'Move line down' })
 vim.keymap.set('n', '<M-k>', ':m .-2<CR>==', { desc = 'Move line up' })
