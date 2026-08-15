@@ -182,10 +182,10 @@ vim.keymap.set('i', 'jj', '<ESC>', { desc = 'Exit Insert Mode' })
 vim.keymap.set('i', 'jJ', '<ESC>', { desc = 'Exit Insert Mode' })
 vim.keymap.set('i', 'JJ', '<ESC>', { desc = 'Exit Insert Mode' })
 vim.keymap.set('i', 'Jj', '<ESC>', { desc = 'Exit Insert Mode' })
-vim.keymap.set('n', '<leader>e', ':Ex<CR>', { desc = 'Opens File Tree' })
+vim.keymap.set('n', '<leader>e', ':Ex<CR>', { desc = 'Opens File [E]xplorer' })
 vim.keymap.set('n', '<M-j>', ':m .+1<CR>==', { desc = 'Move line down' })
 vim.keymap.set('n', '<M-k>', ':m .-2<CR>==', { desc = 'Move line up' })
-vim.keymap.set('v', '(', 'c(<ESC>pa)')
+vim.keymap.set('v', '(', 'c(<ESC>pa)', { desc =  })
 vim.keymap.set('v', '[', 'c[<ESC>pa]')
 vim.keymap.set('v', '{', 'c{<ESC>pa}')
 vim.keymap.set('v', '"', 'c"<ESC>pa"')
@@ -252,14 +252,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function() vim.hl.on_yank() end,
-})
-
--- Abrindo janela de Help Verticalmente
-vim.api.nvim_create_augroup("VerticalHelp", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-    group = "VerticalHelp",
-    pattern = "help",
-    command = "wincmd L",
 })
 
 -- [[ Install `lazy.nvim` plugin manager ]]
